@@ -12,12 +12,12 @@ public class ProcesadorTexto {
         do {
             mostrarMenu();
             i = sc.nextInt();
-            sc.nextLine(); // Limpiar buffer
+            sc.nextLine();
 
             if (i >= 1 && i <= 4) {
                 System.out.print("Ingresa la frase: ");
                 frase = sc.nextLine();
-                opciones(i, frase); // Aquí se llama la nueva función
+                opciones(i, frase); 
             } else if (i != 5) {
                 System.out.println("Opción inválida");
             }
