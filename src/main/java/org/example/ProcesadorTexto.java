@@ -2,7 +2,6 @@ package org.example;
 import java.util.Scanner;
 
 public class ProcesadorTexto {
-
     public static void main(String[] args) {
         menu();
     }
@@ -11,7 +10,24 @@ public class ProcesadorTexto {
         int i;
         String frase;
         do {
-            System.out.print("""
+            mostrarMenu();
+            i = sc.nextInt();
+            sc.nextLine(); // Limpiar buffer
+
+            if (i >= 1 && i <= 4) {
+                System.out.print("Ingresa la frase: ");
+                frase = sc.nextLine();
+                opciones(i, frase); // Aquí se llama la nueva función
+            } else if (i != 5) {
+                System.out.println("Opción inválida");
+            }
+        } while (i != 5);
+
+        System.out.println("Adiós");
+        sc.close();
+    }
+    public static void mostrarMenu(){
+        System.out.print("""
                     \n Menu
                     1. Verificar Reves-Derecho
                     2. Contar Vocales
@@ -19,23 +35,15 @@ public class ProcesadorTexto {
                     4. Desencriptar Texto
                     5. Salir
                     Opción:""");
-            i=sc.nextInt();
-            sc.nextLine();
-            if (i>=1 && i<=4) {
-                System.out.print("Ingresa la frase: ");
-                frase=sc.nextLine();
-                switch (i) {
-                    case 1->System.out.println("¿Es Reves-Derecho? "+esRevesDerecho(frase));
-                    case 2->System.out.println("Vocales: "+contarVocales(frase));
-                    case 3->System.out.println("Encriptado: "+encriptarTexto(frase));
-                    case 4->System.out.println("Desencriptado: "+desencriptarTexto(frase));
-                }
-            } else if (i != 5) {
-                System.out.println("Opción inválida.");
-            }
-        } while (i != 5);
-        System.out.println("¡Hasta luego!");
-        sc.close();
+    }
+    public static void opciones(int i, String frase){
+        switch (i) {
+            case 1->System.out.println("¿Es Reves-Derecho?: "+esRevesDerecho(frase));
+            case 2->System.out.println("Vocales: "+contarVocales(frase));
+            case 3->System.out.println("Encriptado: "+encriptarTexto(frase));
+            case 4->System.out.println("Desencriptado: "+desencriptarTexto(frase));
+            default -> System.out.println("Opcion no valida");
+        }
     }
     public static boolean esRevesDerecho(String texto) {
         String limpio=texto.replaceAll("\\s+","").toLowerCase();
